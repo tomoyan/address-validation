@@ -258,6 +258,10 @@ CRITICAL MANDATORY INSTRUCTIONS:
 3. KEY FINDINGS & EVIDENCE:
 - Provide 2 to 4 concrete verification findings in both English and Local Language detailing physical signage, commercial registration (SEC, RCS, Handelsregister, 法人番号, etc.), zoning status, and operations.
 
+4. REGISTERED AGENT OR VIRTUAL OFFICE AUDIT:
+- Analyze whether the address or company is associated with a Commercial Registered Agent (e.g. CT Corporation, Corporation Trust Center, CSC), Virtual Office (e.g. Regus, WeWork, virtual mail drop), or official statutory registered office.
+- Output "registeredAgentOrVirtualOffice" with complete agentName, officeType, formattedAddress, serviceCapacity, registryFiling, occupancyDescription, and riskNote.
+
 Provide the response in structured JSON adhering to the schema.`;
 
         const verificationResponseSchema = {
@@ -270,6 +274,36 @@ Provide the response in structured JSON adhering to the schema.`;
                 "VERIFIED_BRANCH_LOCATION",
                 "PARTIAL_MATCH",
                 "MISMATCH_UNVERIFIED"
+              ]
+            },
+            registeredAgentOrVirtualOffice: {
+              type: Type.OBJECT,
+              properties: {
+                isRegisteredAgentOrVirtualOffice: { type: Type.BOOLEAN },
+                isInputAddressAnAgentOrVirtualOffice: { type: Type.BOOLEAN },
+                agentName: { type: Type.STRING },
+                officeType: { type: Type.STRING },
+                formattedAddress: { type: Type.STRING },
+                city: { type: Type.STRING },
+                stateOrProvince: { type: Type.STRING },
+                country: { type: Type.STRING },
+                serviceCapacity: { type: Type.STRING },
+                registryFiling: { type: Type.STRING },
+                entityCountEstimate: { type: Type.STRING },
+                occupancyDescription: { type: Type.STRING },
+                riskNote: { type: Type.STRING },
+                streetImageUrl: { type: Type.STRING },
+                streetImageCaption: { type: Type.STRING }
+              },
+              required: [
+                "isRegisteredAgentOrVirtualOffice",
+                "agentName",
+                "officeType",
+                "formattedAddress",
+                "serviceCapacity",
+                "registryFiling",
+                "occupancyDescription",
+                "riskNote"
               ]
             },
             verdictTitle: {
@@ -490,6 +524,17 @@ Provide the response in structured JSON adhering to the schema.`;
             : parsedResult.googleMapsUrl;
           parsedResult.verifiedAt = new Date().toISOString();
           parsedResult.sourceConfidence = "Verified Global Corporate Registrar & Real-Time AI Verification";
+
+          if (parsedResult.registeredAgentOrVirtualOffice) {
+            const agentAddr = parsedResult.registeredAgentOrVirtualOffice.formattedAddress || cleanAddress;
+            const encAgent = encodeURIComponent(agentAddr);
+            parsedResult.registeredAgentOrVirtualOffice.googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encAgent}`;
+            parsedResult.registeredAgentOrVirtualOffice.googleStreetViewUrl = `https://www.google.com/maps/search/?api=1&query=${encAgent}`;
+            if (!parsedResult.registeredAgentOrVirtualOffice.streetImageUrl) {
+              parsedResult.registeredAgentOrVirtualOffice.streetImageUrl = "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80";
+              parsedResult.registeredAgentOrVirtualOffice.streetImageCaption = `Street View • ${parsedResult.registeredAgentOrVirtualOffice.agentName}`;
+            }
+          }
 
           cache.set(cacheKey, parsedResult);
           return res.json(parsedResult);

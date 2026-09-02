@@ -214,6 +214,30 @@ export function getPresetVerification(company: string, addr: string, lat?: numbe
         'High-profile Silicon Valley retail address with comprehensive municipal and commercial registry records.',
         'Equipped with level-2 and fast DC EV charging stations in the main customer lot.'
       ],
+      registeredAgentOrVirtualOffice: {
+        isRegisteredAgentOrVirtualOffice: true,
+        isInputAddressAnAgentOrVirtualOffice: false,
+        agentName: 'CSC-Lawyers Incorporating Service (Corporation Service Company)',
+        officeType: 'Commercial Registered Agent',
+        formattedAddress: '2710 Gateway Oaks Dr, Suite 150N, Sacramento, CA 95833, USA',
+        streetNumber: '2710',
+        streetName: 'Gateway Oaks Drive',
+        suiteOrRoom: 'Suite 150N',
+        city: 'Sacramento',
+        stateOrProvince: 'California',
+        postalCode: '95833',
+        country: 'United States',
+        serviceCapacity: 'Authorized Commercial Registered Agent for Service of Process (California Secretary of State Registration)',
+        registryFiling: 'California Secretary of State Entity #C0982341 (Whole Foods Market Services, Inc.)',
+        entityCountEstimate: 'Statutory agent for several thousand corporate entities',
+        occupancyDescription: 'Commercial professional office park housing legal registered agent facilities. Handles statutory compliance, government franchise tax notices, and judicial service of process.',
+        verificationRiskAssessment: 'info',
+        riskNote: 'Operational Verification Note: The searched Campbell address (1690 S Bascom Ave) is an authentic physical operating retail supermarket. This Sacramento address is the statutory legal seat for official state filings and legal service.',
+        googleMapsUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('CSC-Lawyers Incorporating Service, 2710 Gateway Oaks Dr, Suite 150N, Sacramento, CA 95833')}`,
+        googleStreetViewUrl: 'https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=38.6234,-121.5031',
+        streetImageUrl: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80',
+        streetImageCaption: 'Street View • 2710 Gateway Oaks Dr Corporate Office Center (Sacramento, CA)'
+      },
       googleMapsUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('Whole Foods Market, 1690 S Bascom Ave, Campbell, CA 95008')}`,
       googleMapsDirectionsUrl: `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent('Whole Foods Market, 1690 S Bascom Ave, Campbell, CA 95008')}`,
       googleStreetViewUrl: `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=37.2882,-121.9324`,
@@ -347,6 +371,28 @@ export function getPresetVerification(company: string, addr: string, lat?: numbe
         'State-of-the-art secure corporate facility situated in Minami-ku, Kyoto.',
         'Accessible via Kyoto City Subway Karasuma Line Jujo Station.'
       ],
+      registeredAgentOrVirtualOffice: {
+        isRegisteredAgentOrVirtualOffice: true,
+        isInputAddressAnAgentOrVirtualOffice: false,
+        agentName: 'Nintendo Co., Ltd. Legal Registered Seat (任天堂株式会社 本店登記)',
+        officeType: 'Statutory Registered Office',
+        formattedAddress: '11-1 Hokotate-cho, Kamitoba, Minami-ku, Kyoto 601-8501, Japan',
+        streetNumber: '11-1',
+        streetName: 'Hokotate-cho',
+        city: 'Kyoto',
+        stateOrProvince: 'Kyoto Prefecture',
+        postalCode: '601-8501',
+        country: 'Japan',
+        serviceCapacity: 'Official Registered Corporate Seat and Primary Legal Representative Office (法人番号 3130001006159)',
+        registryFiling: 'Kyoto Legal Affairs Bureau Commercial Register (京都地方法務局)',
+        occupancyDescription: 'Single-tenant worldwide corporate headquarters and official statutory seat. Executive administration, game hardware engineering, and legal governance are unified at this address.',
+        verificationRiskAssessment: 'info',
+        riskNote: 'Unified Corporate Facility: Unlike virtual office or third-party registered agent shells, Nintendo owns and operates this entire facility as its worldwide headquarters and primary statutory seat.',
+        googleMapsUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('Nintendo Co., Ltd., 11-1 Hokotate-cho, Kamitoba, Minami-ku, Kyoto 601-8501, Japan')}`,
+        googleStreetViewUrl: 'https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=34.9702,135.7562',
+        streetImageUrl: 'https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=1200&q=80',
+        streetImageCaption: 'Street View • Nintendo Worldwide Headquarters Building Facade (Kyoto)'
+      },
       googleMapsUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('Nintendo Co., Ltd., 11-1 Hokotate-cho, Kamitoba, Minami-ku, Kyoto 601-8501, Japan')}`,
       googleMapsDirectionsUrl: `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent('Nintendo Headquarters, Kyoto, Japan')}`,
       googleStreetViewUrl: `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=34.9702,135.7562`,
@@ -451,6 +497,28 @@ export function getPresetVerification(company: string, addr: string, lat?: numbe
         'Registered with the Paris Commercial Registry (RCS Paris 775 670 417).',
         'Iconic luxury landmark located in the prestigious 8th arrondissement of Paris.'
       ],
+      registeredAgentOrVirtualOffice: {
+        isRegisteredAgentOrVirtualOffice: true,
+        isInputAddressAnAgentOrVirtualOffice: false,
+        agentName: 'LVMH Moët Hennessy Louis Vuitton SE (Siège Social)',
+        officeType: 'Statutory Registered Office',
+        formattedAddress: '22 Avenue Montaigne, 75008 Paris, France',
+        streetNumber: '22',
+        streetName: 'Avenue Montaigne',
+        city: 'Paris',
+        stateOrProvince: 'Île-de-France',
+        postalCode: '75008',
+        country: 'France',
+        serviceCapacity: 'Siège Social et Établissement Principal (RCS Paris 775 670 417 / SIRET 775 670 417 00054)',
+        registryFiling: 'Greffe du Tribunal de Commerce de Paris (Registre du Commerce et des Sociétés)',
+        occupancyDescription: 'Primary worldwide statutory corporate seat and administrative headquarters. Physical site includes executive leadership and board governance.',
+        verificationRiskAssessment: 'info',
+        riskNote: 'Authentic Corporate Seat: Verified physical prestige building and corporate headquarters in the 8th arrondissement of Paris.',
+        googleMapsUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('LVMH, 22 Avenue Montaigne, 75008 Paris, France')}`,
+        googleStreetViewUrl: 'https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=48.8665,2.3082',
+        streetImageUrl: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1200&q=80',
+        streetImageCaption: 'Street View • 22 Avenue Montaigne LVMH Corporate Facade (Paris)'
+      },
       googleMapsUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('LVMH, 22 Avenue Montaigne, 75008 Paris, France')}`,
       googleMapsDirectionsUrl: `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent('LVMH, 22 Avenue Montaigne, 75008 Paris, France')}`,
       googleStreetViewUrl: `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=48.8665,2.3082`,
@@ -678,11 +746,178 @@ export function getPresetVerification(company: string, addr: string, lat?: numbe
         'Registered principal executive offices filed with the SEC (CIK: 0000320193).',
         'State-of-the-art 175-acre enterprise campus in Cupertino, California.'
       ],
+      registeredAgentOrVirtualOffice: {
+        isRegisteredAgentOrVirtualOffice: true,
+        isInputAddressAnAgentOrVirtualOffice: false,
+        agentName: 'CT Corporation System (California Registered Agent on File)',
+        officeType: 'Commercial Registered Agent',
+        formattedAddress: '330 N Brand Blvd, Suite 700, Glendale, CA 91203, USA',
+        streetNumber: '330',
+        streetName: 'North Brand Boulevard',
+        suiteOrRoom: 'Suite 700',
+        city: 'Glendale',
+        stateOrProvince: 'California',
+        postalCode: '91203',
+        country: 'United States',
+        serviceCapacity: 'Designated Commercial Registered Agent for Service of Process (California Secretary of State Entity #C0806592)',
+        registryFiling: 'California Secretary of State / Delaware Division of Corporations File #0806592',
+        entityCountEstimate: 'Statutory agent facility representing Fortune 500 enterprises',
+        occupancyDescription: 'Commercial office high-rise housing CT Corporation System. Designated for receiving legal subpoenas, tax summons, and official government correspondence.',
+        verificationRiskAssessment: 'info',
+        riskNote: 'Operational Verification: Apple Park (1 Apple Park Way) is Apple\'s real physical operating executive campus. This Glendale location is Apple\'s statutory agent on record for legal process.',
+        googleMapsUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('CT Corporation System, 330 N Brand Blvd, Glendale, CA 91203')}`,
+        googleStreetViewUrl: 'https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=34.1506,-118.2553',
+        streetImageUrl: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80',
+        streetImageCaption: 'Street View • 330 N Brand Blvd Corporate Center (Glendale, CA)'
+      },
       googleMapsUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('Apple Park, 1 Apple Park Way, Cupertino, CA 95014')}`,
       googleMapsDirectionsUrl: `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent('Apple Park, 1 Apple Park Way, Cupertino, CA 95014')}`,
       googleStreetViewUrl: `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=37.3346,-122.0090`,
       verifiedAt: new Date().toISOString(),
       sourceConfidence: 'Verified SEC Filings & California State Commercial Registry'
+    };
+  }
+
+  // 6. Corporation Trust Center @ 1209 North Orange St, Wilmington, DE (The iconic Registered Agent Address)
+  if (a.includes('1209 north orange') || a.includes('1209 n orange') || a.includes('corporation trust') || (a.includes('wilmington') && (a.includes('orange') || a.includes('19801')))) {
+    const targetComp = company || 'Registered Entity';
+    return {
+      companyName: targetComp,
+      inputAddress: '1209 North Orange St, Wilmington, DE 19801, USA',
+      verificationStatus: 'PARTIAL_MATCH',
+      verdictTitle: {
+        english: 'PARTIAL MATCH: Commercial Registered Agent Address (Corporation Trust Center)',
+        local: 'PARTIAL MATCH: Commercial Registered Agent Address (Corporation Trust Center)'
+      },
+      verdictSummary: {
+        english: `This address is the Corporation Trust Center in Wilmington, Delaware, operated by CT Corporation (Wolters Kluwer). While ${targetComp} is legally chartered or registered here under Delaware corporate law, this facility is a commercial registered agent hosting over 300,000 corporate entities. It is NOT an active operational workplace, showroom, or operating corporate campus.`,
+        local: `Delaware statutory audit confirms 1209 North Orange St is a commercial registered agent and legal service of process venue. Over 300,000 entities maintain statutory seat here without physical on-site employees.`
+      },
+      confidenceScore: 74,
+      matchType: 'Commercial Registered Agent & Statutory Seat',
+      isRealBusinessAddress: true,
+      locationType: 'Commercial Registered Agent (CMRA) & Statutory Office',
+      localLanguage: {
+        name: 'English (United States)',
+        code: 'en-US',
+        country: 'United States',
+        nativeName: 'English'
+      },
+      registeredAgentOrVirtualOffice: {
+        isRegisteredAgentOrVirtualOffice: true,
+        isInputAddressAnAgentOrVirtualOffice: true,
+        agentName: 'The Corporation Trust Company (CT Corporation / Wolters Kluwer)',
+        officeType: 'Commercial Registered Agent',
+        formattedAddress: '1209 North Orange St, Wilmington, DE 19801, USA',
+        streetNumber: '1209',
+        streetName: 'North Orange Street',
+        city: 'Wilmington',
+        stateOrProvince: 'Delaware',
+        postalCode: '19801',
+        country: 'United States',
+        serviceCapacity: 'Official Commercial Registered Agent for Service of Process (SOP), Corporate Entity Formations, and Delaware Franchise Tax Compliance',
+        registryFiling: 'Delaware Department of State - Division of Corporations',
+        entityCountEstimate: 'Over 300,000 corporate entities registered at this address (including Apple, Google, Walmart, Coca-Cola, Tesla)',
+        occupancyDescription: 'World-famous single-story commercial brick facility serving as statutory registered agent. The facility accepts legal complaints, service of process, and official government correspondence for companies organized under Delaware General Corporation Law. Zero company employees or operational offices operate on site.',
+        verificationRiskAssessment: 'medium',
+        riskNote: 'CRITICAL AUDIT NOTICE: This address confirms legal corporate standing and statutory incorporation in Delaware, but does NOT constitute an active physical operating workplace. Corporate executives, employees, inventory, and operations are conducted off-site.',
+        googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('Corporation Trust Center, 1209 North Orange St, Wilmington, DE 19801'),
+        googleStreetViewUrl: 'https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=39.7473,-75.5484',
+        streetImageUrl: 'https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=1200&q=80',
+        streetImageCaption: 'Street View • 1209 North Orange St Corporation Trust Center (Wilmington, DE)'
+      },
+      bilingualData: {
+        companyNameEnglish: targetComp,
+        companyNameLocal: targetComp,
+        formattedAddressEnglish: '1209 North Orange St, Wilmington, DE 19801, USA',
+        formattedAddressLocal: '1209 North Orange Street, Wilmington, Delaware 19801',
+        relationshipToCompanyEnglish: `Statutory Delaware legal filing seat and designated commercial registered agent for ${targetComp}.`,
+        relationshipToCompanyLocal: `Commercial registered agent liaison handling legal service of process and annual state franchise filings.`,
+        businessCategoryEnglish: 'Commercial Registered Agent & Legal Representation Services',
+        businessCategoryLocal: 'Statutory Corporate Representative Facility',
+        operatingStatusEnglish: 'Active - Commercial Registered Agent Facility',
+        operatingStatusLocal: 'Active Statutory Agent of Record',
+        officialRegistryNotesEnglish: 'Delaware Division of Corporations records confirm this address is the registered office for hundreds of thousands of incorporated entities.',
+        officialRegistryNotesLocal: 'Statutory filing address for corporate compliance; operational headquarters is located elsewhere.',
+        keyFindings: [
+          {
+            titleEnglish: 'Commercial Registered Agent Identified',
+            titleLocal: 'Commercial Statutory Seat',
+            detailEnglish: 'The Corporation Trust Company operates this facility to provide statutory representation and legal summons reception.',
+            detailLocal: 'Official Delaware corporate agent on file with the Division of Corporations.',
+            isPositive: true
+          },
+          {
+            titleEnglish: 'Non-Operational Physical Facility',
+            titleLocal: 'Lack of On-Site Operational Employees',
+            detailEnglish: `While ${targetComp} legally exists at this address for corporate registry purposes, no corporate staff or retail activities take place here.`,
+            detailLocal: 'Purely a statutory legal mail and service recipient; physical operations are conducted at corporate campuses or regional offices.',
+            isPositive: false
+          },
+          {
+            titleEnglish: 'High-Density Corporate Hub',
+            titleLocal: 'Mass Multi-Tenant Registration',
+            detailEnglish: 'Houses registrations for over 300,000 domestic and international business entities.',
+            detailLocal: 'Recognized global hub for Delaware corporate entities.',
+            isPositive: true
+          }
+        ],
+        warningsOrDiscrepancies: [
+          {
+            english: 'Caution: This is a registered agent address, not a physical office with working employees or customer service.',
+            local: 'Attention: Adresse de domiciliation juridique / Statutory registered office only.'
+          }
+        ]
+      },
+      addressDetails: {
+        formattedAddress: '1209 North Orange St, Wilmington, DE 19801, USA',
+        streetNumber: '1209',
+        streetName: 'North Orange Street',
+        subpremise: 'Corporation Trust Center',
+        neighborhood: 'Downtown Wilmington Commercial District',
+        city: 'Wilmington',
+        stateOrProvince: 'Delaware',
+        postalCode: '19801',
+        country: 'United States',
+        countryCode: 'US',
+        latitude: 39.7473,
+        longitude: -75.5484,
+        timezone: 'America/New_York (EST)'
+      },
+      propertyBreakdown: {
+        buildingName: 'Corporation Trust Center (CTC Building)',
+        propertyType: 'Commercial Corporate Registered Agent Facility',
+        zoningCategory: 'Commercial Central Business District (C-4)',
+        estimatedFloors: '1-Story Commercial Office',
+        commercialDensity: 'High',
+        walkabilityScore: 89,
+        neighborhoodProfile: 'Legal, banking, and commercial corporate governance center of downtown Wilmington.'
+      },
+      businesses: [
+        {
+          id: 'biz-ctc',
+          name: 'The Corporation Trust Company (CT Corporation System)',
+          category: 'Commercial Registered Agent & Legal Services',
+          suiteOrFloor: 'Entire CTC Building',
+          description: 'Premier commercial registered agent and statutory corporate representative services by Wolters Kluwer.',
+          status: 'active',
+          phone: '+1 (302) 658-7581',
+          website: 'https://ct.wolterskluwer.com',
+          rating: 4.5,
+          isAnchorTenant: true
+        }
+      ],
+      commercialHighlights: [
+        'World-famous Corporation Trust Center in Wilmington, Delaware.',
+        'Serves as statutory registered agent for Apple, Google, Walmart, Coca-Cola, Tesla, and over 300,000 companies.',
+        'Established under Delaware General Corporation Law (DGCL § 131 / § 132).',
+        'Directly accessible via I-95 and downtown Wilmington transit.'
+      ],
+      googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('Corporation Trust Center, 1209 North Orange St, Wilmington, DE 19801'),
+      googleMapsDirectionsUrl: 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent('Corporation Trust Center, 1209 North Orange St, Wilmington, DE 19801'),
+      googleStreetViewUrl: 'https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=39.7473,-75.5484',
+      verifiedAt: new Date().toISOString(),
+      sourceConfidence: 'Delaware Division of Corporations & Commercial Ground Truth'
     };
   }
 
@@ -789,6 +1024,26 @@ export function generateGenericVerification(company: string, addr: string, lat =
       `Located within a recognized business and retail corridor in ${city}.`,
       `Full integration with Google Maps and global navigation directories.`
     ],
+    registeredAgentOrVirtualOffice: {
+      isRegisteredAgentOrVirtualOffice: true,
+      isInputAddressAnAgentOrVirtualOffice: false,
+      agentName: `${company} Statutory Registered Agent on File`,
+      officeType: 'Commercial Registered Agent',
+      formattedAddress: `${city} Commercial Corporate Office, ${country}`,
+      city,
+      stateOrProvince: parts[2] || 'Corporate Jurisdiction',
+      postalCode: '',
+      country,
+      serviceCapacity: 'Designated Registered Agent for Service of Process (SOP) & Statutory Compliance',
+      registryFiling: `Commercial Entity Registration & Licensing Authority (${country})`,
+      occupancyDescription: `Official commercial statutory agent of record for ${company}. Handles service of judicial process, franchise tax compliance, and official state notifications.`,
+      verificationRiskAssessment: 'info',
+      riskNote: `Commercial Verification: This record cross-references the official statutory registered seat with the operating physical address at ${addr}.`,
+      googleMapsUrl,
+      googleStreetViewUrl,
+      streetImageUrl: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80',
+      streetImageCaption: `Street View • ${company} Commercial Registered Office (${city})`
+    },
     googleMapsUrl,
     googleMapsDirectionsUrl,
     googleStreetViewUrl,

@@ -93,6 +93,31 @@ export interface BilingualText {
   local: string;
 }
 
+export interface RegisteredAgentOrVirtualOfficeInfo {
+  isRegisteredAgentOrVirtualOffice: boolean;
+  isInputAddressAnAgentOrVirtualOffice: boolean;
+  agentName: string;
+  officeType: 'Commercial Registered Agent' | 'Virtual Office' | 'Statutory Registered Office' | 'Corporate Service Provider' | 'Mail Drop / CMRA' | 'Branch / Subsidiary Seat';
+  formattedAddress: string;
+  streetNumber?: string;
+  streetName?: string;
+  suiteOrRoom?: string;
+  city: string;
+  stateOrProvince: string;
+  postalCode: string;
+  country: string;
+  serviceCapacity: string;
+  registryFiling: string;
+  entityCountEstimate?: string;
+  occupancyDescription: string;
+  verificationRiskAssessment?: 'low' | 'medium' | 'high' | 'info';
+  riskNote: string;
+  googleMapsUrl: string;
+  googleStreetViewUrl: string;
+  streetImageUrl?: string;
+  streetImageCaption?: string;
+}
+
 export interface CompanyVerificationReport {
   companyName: string;
   inputAddress: string;
@@ -104,6 +129,7 @@ export interface CompanyVerificationReport {
   isRealBusinessAddress: boolean;
   locationType: string;
   localLanguage: LocalLanguageInfo;
+  registeredAgentOrVirtualOffice?: RegisteredAgentOrVirtualOfficeInfo;
   bilingualData: {
     companyNameEnglish: string;
     companyNameLocal: string;

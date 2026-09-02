@@ -19,6 +19,7 @@ import {
   Compass
 } from 'lucide-react';
 import { CompanyVerificationReport } from '../types';
+import { RegisteredAgentSection } from './RegisteredAgentSection';
 
 interface VerificationResultCardProps {
   report: CompanyVerificationReport;
@@ -805,6 +806,13 @@ export const VerificationResultCard: React.FC<VerificationResultCardProps> = ({ 
           </div>
         </div>
       </div>
+
+      {/* Registered Agent or Virtual Office Address Section */}
+      <RegisteredAgentSection
+        info={report.registeredAgentOrVirtualOffice}
+        companyName={companyName}
+        inputAddress={inputAddress}
+      />
     </div>
   );
 };
