@@ -1,0 +1,6 @@
+{
+  "name": "Global Address Search & Business Directory",
+  "description": "Verify company business addresses with official registry cross-referencing and bilingual verification results in English and the local language.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
