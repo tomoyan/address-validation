@@ -24,6 +24,14 @@ export const AddressHeaderCard: React.FC<AddressHeaderCardProps> = ({ report }) 
 
   const { addressDetails, propertyBreakdown, googleMapsUrl, googleMapsDirectionsUrl, googleStreetViewUrl } = report;
 
+  const targetAddressStr = (addressDetails.formattedAddress || report.inputAddress || '').trim();
+  const directAddressMapsUrl = targetAddressStr
+    ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(targetAddressStr)}`
+    : googleMapsUrl;
+  const directAddressDirectionsUrl = targetAddressStr
+    ? `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(targetAddressStr)}`
+    : googleMapsDirectionsUrl;
+
   const handleCopyAddress = () => {
     navigator.clipboard.writeText(addressDetails.formattedAddress);
     setCopiedAddr(true);
@@ -81,7 +89,7 @@ export const AddressHeaderCard: React.FC<AddressHeaderCardProps> = ({ report }) 
               </span>
               <a
                 id="address-card-google-maps-link"
-                href={googleMapsUrl}
+                href={directAddressMapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 text-[11px] font-bold text-blue-600 hover:text-blue-800 hover:underline"
@@ -92,7 +100,7 @@ export const AddressHeaderCard: React.FC<AddressHeaderCardProps> = ({ report }) 
               </a>
             </div>
             <a
-              href={googleMapsUrl}
+              href={directAddressMapsUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="block group"
@@ -150,7 +158,7 @@ export const AddressHeaderCard: React.FC<AddressHeaderCardProps> = ({ report }) 
           {/* Primary Map Link */}
           <a
             id="main-open-google-maps-btn"
-            href={googleMapsUrl}
+            href={directAddressMapsUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="h-12 px-5 bg-slate-50 border border-slate-200 rounded-2xl inline-flex items-center justify-center gap-2.5 font-bold text-xs sm:text-sm text-slate-700 group hover:bg-white hover:shadow-md transition-all"
@@ -167,7 +175,7 @@ export const AddressHeaderCard: React.FC<AddressHeaderCardProps> = ({ report }) 
           {/* Directions Link */}
           <a
             id="google-maps-directions-btn"
-            href={googleMapsDirectionsUrl}
+            href={directAddressDirectionsUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="h-12 px-4 bg-white border border-slate-200 rounded-2xl inline-flex items-center justify-center gap-2 text-xs sm:text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-all"

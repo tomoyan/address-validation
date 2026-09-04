@@ -20,6 +20,14 @@ export const MapPreview: React.FC<MapPreviewProps> = ({ report }) => {
   const lat = addressDetails.latitude;
   const lng = addressDetails.longitude;
 
+  const targetAddressStr = (addressDetails.formattedAddress || report.inputAddress || '').trim();
+  const directAddressMapsUrl = targetAddressStr
+    ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(targetAddressStr)}`
+    : googleMapsUrl;
+  const directAddressDirectionsUrl = targetAddressStr
+    ? `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(targetAddressStr)}`
+    : googleMapsDirectionsUrl;
+
   // OpenStreetMap embed URL (safe, robust, interactive iframe without API key requirement)
   const delta = 0.005;
   const bbox = `${lng - delta}%2C${lat - delta}%2C${lng + delta}%2C${lat + delta}`;
@@ -73,7 +81,7 @@ export const MapPreview: React.FC<MapPreviewProps> = ({ report }) => {
       <div className="pt-1">
         <a
           id="map-preview-google-maps-btn"
-          href={googleMapsUrl}
+          href={directAddressMapsUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="w-full h-14 bg-slate-50 border border-slate-200 rounded-2xl flex items-center justify-center gap-3 font-bold text-sm text-slate-700 group hover:bg-white hover:shadow-md transition-all"
@@ -91,7 +99,7 @@ export const MapPreview: React.FC<MapPreviewProps> = ({ report }) => {
       <div className="grid grid-cols-2 gap-2 text-xs">
         <a
           id="map-action-directions"
-          href={googleMapsDirectionsUrl}
+          href={directAddressDirectionsUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="p-3 rounded-xl bg-slate-50 hover:bg-white hover:shadow-xs text-slate-700 border border-slate-200 flex items-center justify-between transition-all group"

@@ -199,6 +199,32 @@ export interface AddressReport {
   googleStreetViewUrl: string;
 }
 
+export interface PlaceMapInfo {
+  query: string;
+  formattedAddress: string;
+  placeName?: string;
+  lat: number;
+  lng: number;
+  zoom?: number;
+  addressComponents: {
+    streetNumber?: string;
+    street?: string;
+    neighborhood?: string;
+    city?: string;
+    state?: string;
+    postalCode?: string;
+    country?: string;
+    countryCode?: string;
+  };
+  plusCode?: string;
+  placeType?: string;
+  googleMapsUrl: string;
+  googleMapsDirectionsUrl: string;
+  googleStreetViewUrl: string;
+  googleEarthUrl: string;
+  searchedAt: string;
+}
+
 export interface SampleVerificationCase {
   label: string;
   companyName: string;

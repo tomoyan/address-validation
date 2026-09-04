@@ -19,6 +19,7 @@ app.use(express.json());
 
 // In-Memory Caches for super-fast repeat searches
 const geocodeCache = new Map<string, any[]>();
+const placeSearchCache = new Map<string, any>();
 const businessIntelCache = new Map<string, any>();
 
 // Helper for fetch with timeout
@@ -203,6 +204,149 @@ app.get("/api/geocode", async (req, res) => {
   }
 });
 
+// Address Search & Place Resolver API
+app.get("/api/search-place", async (req, res) => {
+  try {
+    const rawQuery = (req.query.q as string || "").trim();
+    if (!rawQuery) {
+      return res.status(400).json({ error: "Address query is required" });
+    }
+
+    const cacheKey = `place_${rawQuery.toLowerCase()}`;
+    if (placeSearchCache.has(cacheKey)) {
+      const cached = placeSearchCache.get(cacheKey);
+      return res.json({ success: true, place: cached });
+    }
+
+    // 1. Try coordinate parsing directly if user typed "lat, lng"
+    const coordMatch = rawQuery.match(/^([-+]?\d{1,2}(?:\.\d+)?)[,\s]+([-+]?\d{1,3}(?:\.\d+)?)$/);
+    if (coordMatch) {
+      const lat = parseFloat(coordMatch[1]);
+      const lng = parseFloat(coordMatch[2]);
+      if (lat >= -90 && lat <= 90 && lng >= -180 && lng <= 180) {
+        const place = {
+          query: rawQuery,
+          formattedAddress: `${lat.toFixed(6)}, ${lng.toFixed(6)}`,
+          placeName: `Coordinates (${lat.toFixed(4)}, ${lng.toFixed(4)})`,
+          lat,
+          lng,
+          zoom: 16,
+          addressComponents: {},
+          googleMapsUrl: `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`,
+          googleMapsDirectionsUrl: `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`,
+          googleStreetViewUrl: `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${lat},${lng}`,
+          googleEarthUrl: `https://earth.google.com/web/search/${lat},${lng}`,
+          searchedAt: new Date().toISOString()
+        };
+        placeSearchCache.set(cacheKey, place);
+        return res.json({ success: true, place });
+      }
+    }
+
+    // 2. Fetch geocoded result via Photon / Nominatim
+    let resolvedLat = 37.4220;
+    let resolvedLng = -122.0841;
+    let resolvedAddress = rawQuery;
+    let placeName = '';
+    let addressComponents: any = {};
+    let placeType = 'address';
+
+    // Try Photon first
+    try {
+      const photonUrl = `https://photon.komoot.io/api/?q=${encodeURIComponent(rawQuery)}&limit=1`;
+      const photonRes = await fetchWithTimeout(photonUrl, {}, 3000);
+      if (photonRes.ok) {
+        const pData = await photonRes.json() as any;
+        if (pData.features && pData.features.length > 0) {
+          const top = pData.features[0];
+          const [lon, lat] = top.geometry.coordinates;
+          resolvedLat = lat;
+          resolvedLng = lon;
+          const props = top.properties || {};
+          placeName = props.name || '';
+          const streetAddr = props.housenumber ? `${props.housenumber} ${props.street || ''}`.trim() : props.street;
+          const parts = [
+            props.name,
+            streetAddr && streetAddr !== props.name ? streetAddr : null,
+            props.city,
+            props.state,
+            props.country,
+          ].filter(Boolean);
+          resolvedAddress = parts.join(", ") || rawQuery;
+          addressComponents = {
+            streetNumber: props.housenumber,
+            street: props.street,
+            city: props.city,
+            state: props.state,
+            postalCode: props.postcode,
+            country: props.country,
+            countryCode: props.countrycode?.toUpperCase(),
+          };
+          placeType = props.osm_value || props.type || 'place';
+        }
+      }
+    } catch (e) {
+      // Fall through to Nominatim
+    }
+
+    // If Photon didn't return country, try Nominatim
+    if (!addressComponents.country) {
+      try {
+        const nomUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(rawQuery)}&format=json&addressdetails=1&limit=1`;
+        const nomRes = await fetchWithTimeout(nomUrl, {
+          headers: { 'User-Agent': 'GlobalAddressSearchTool/1.0 (contact@aistudio.app)', 'Accept-Language': 'en, *' }
+        }, 3000);
+        if (nomRes.ok) {
+          const nData = await nomRes.json() as any[];
+          if (nData && nData.length > 0) {
+            const top = nData[0];
+            resolvedLat = parseFloat(top.lat);
+            resolvedLng = parseFloat(top.lon);
+            resolvedAddress = top.display_name;
+            const addr = top.address || {};
+            addressComponents = {
+              streetNumber: addr.house_number,
+              street: addr.road,
+              neighborhood: addr.neighbourhood || addr.suburb,
+              city: addr.city || addr.town || addr.village || addr.municipality,
+              state: addr.state || addr.state_district,
+              postalCode: addr.postcode,
+              country: addr.country,
+              countryCode: addr.country_code?.toUpperCase(),
+            };
+            placeType = top.type || top.category || 'place';
+          }
+        }
+      } catch (nomErr) {
+        // Fallback gracefully
+      }
+    }
+
+    const encodedMapAddress = encodeURIComponent(resolvedAddress || rawQuery);
+    const place = {
+      query: rawQuery,
+      formattedAddress: resolvedAddress,
+      placeName: placeName || rawQuery.split(',')[0],
+      lat: resolvedLat,
+      lng: resolvedLng,
+      zoom: 16,
+      addressComponents,
+      placeType,
+      googleMapsUrl: `https://www.google.com/maps/search/?api=1&query=${encodedMapAddress}`,
+      googleMapsDirectionsUrl: `https://www.google.com/maps/dir/?api=1&destination=${encodedMapAddress}`,
+      googleStreetViewUrl: `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${resolvedLat},${resolvedLng}`,
+      googleEarthUrl: `https://earth.google.com/web/search/${encodedMapAddress}`,
+      searchedAt: new Date().toISOString()
+    };
+
+    placeSearchCache.set(cacheKey, place);
+    return res.json({ success: true, place });
+  } catch (err: any) {
+    console.error("Place search error:", err);
+    return res.status(500).json({ error: "Failed to search address" });
+  }
+});
+
 // Company Address Verification API
 app.post("/api/verify-company-address", async (req, res) => {
   try {
@@ -226,6 +370,12 @@ app.post("/api/verify-company-address", async (req, res) => {
     // Check high-accuracy presets first (instant ground truth)
     const preset = getPresetVerification(cleanCompany, cleanAddress, targetLat, targetLng);
     if (preset) {
+      if (cleanAddress) {
+        const enc = encodeURIComponent(cleanAddress);
+        preset.inputAddress = cleanAddress;
+        preset.googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${enc}`;
+        preset.googleMapsDirectionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${enc}`;
+      }
       cache.set(cacheKey, preset);
       return res.json(preset);
     }
@@ -514,7 +664,8 @@ Provide the response in structured JSON adhering to the schema.`;
         }
 
         if (parsedResult) {
-          const encodedAddress = encodeURIComponent(`${cleanCompany}, ${cleanAddress}`);
+          const mapTargetAddress = (cleanAddress || parsedResult.addressDetails?.formattedAddress || parsedResult.inputAddress || "").trim();
+          const encodedAddress = encodeURIComponent(mapTargetAddress);
           parsedResult.companyName = cleanCompany;
           parsedResult.inputAddress = cleanAddress;
           parsedResult.googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
@@ -546,6 +697,12 @@ Provide the response in structured JSON adhering to the schema.`;
 
     // Fallback to algorithmic verification engine
     const fallbackResult = generateGenericVerification(cleanCompany, cleanAddress, targetLat, targetLng);
+    if (cleanAddress) {
+      const enc = encodeURIComponent(cleanAddress);
+      fallbackResult.inputAddress = cleanAddress;
+      fallbackResult.googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${enc}`;
+      fallbackResult.googleMapsDirectionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${enc}`;
+    }
     cache.set(cacheKey, fallbackResult);
     return res.json(fallbackResult);
   } catch (error) {

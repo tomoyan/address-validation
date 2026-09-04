@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Search, MapPin, X, Loader2, Navigation, ExternalLink } from 'lucide-react';
 import { AddressSuggestion } from '../types';
-import { QuickExplore } from './QuickExplore';
 
 interface SearchBarProps {
   onSearch: (query: string, suggestion?: AddressSuggestion) => void;
@@ -324,9 +323,6 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSearch, isLoading, initi
           </div>
         )}
       </form>
-
-      {/* Dynamic & Toggleable Quick Explore Component with Randomizer */}
-      <QuickExplore onSelect={(sampleQuery) => onSearch(sampleQuery)} isLoading={isLoading} />
     </div>
   );
 };

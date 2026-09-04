@@ -60,6 +60,15 @@ export const VerificationResultCard: React.FC<VerificationResultCardProps> = ({ 
     setTimeout(() => setCopied(false), 2000);
   };
 
+  // Google Map link directly targets the entered Company Address on the map
+  const enteredAddress = (inputAddress || bilingualData?.formattedAddressEnglish || addressDetails?.formattedAddress || '').trim();
+  const directAddressMapsUrl = enteredAddress
+    ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(enteredAddress)}`
+    : googleMapsUrl;
+  const directAddressDirectionsUrl = enteredAddress
+    ? `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(enteredAddress)}`
+    : googleMapsDirectionsUrl;
+
   // Status Styling Archetypes
   const statusBadge = isHQ ? (
     <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300/80 font-bold text-xs">
@@ -116,7 +125,7 @@ export const VerificationResultCard: React.FC<VerificationResultCardProps> = ({ 
               </span>
               <a
                 id="header-physical-address-maps-link"
-                href={googleMapsUrl}
+                href={directAddressMapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex items-center gap-1.5 font-semibold text-blue-700 hover:text-blue-900 underline decoration-blue-300 hover:decoration-blue-600 transition-colors"
@@ -781,7 +790,7 @@ export const VerificationResultCard: React.FC<VerificationResultCardProps> = ({ 
           <div className="flex items-center gap-2">
             <a
               id="verification-google-maps-link"
-              href={googleMapsUrl}
+              href={directAddressMapsUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition-all"
@@ -795,7 +804,7 @@ export const VerificationResultCard: React.FC<VerificationResultCardProps> = ({ 
             </a>
 
             <a
-              href={googleMapsDirectionsUrl}
+              href={directAddressDirectionsUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs flex items-center gap-1.5 transition-colors"

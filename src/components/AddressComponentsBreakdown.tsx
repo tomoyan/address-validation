@@ -34,6 +34,11 @@ export const AddressComponentsBreakdown: React.FC<AddressComponentsBreakdownProp
     { label: 'Plus Code / OLC', value: details.plusCode || `${details.latitude.toFixed(2)}°N, ${details.longitude.toFixed(2)}°E`, key: 'plusCode' },
   ];
 
+  const addressToMap = (details.formattedAddress || '').trim();
+  const directMapsUrl = addressToMap
+    ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(addressToMap)}`
+    : googleMapsUrl;
+
   return (
     <div id="address-breakdown-section" className="bg-white rounded-[32px] border border-slate-200 shadow-sm p-6 sm:p-8 space-y-6">
       {/* Header */}
@@ -54,7 +59,7 @@ export const AddressComponentsBreakdown: React.FC<AddressComponentsBreakdownProp
 
         <a
           id="address-breakdown-maps-link"
-          href={googleMapsUrl}
+          href={directMapsUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-slate-700 bg-slate-50 hover:bg-white hover:shadow-xs rounded-xl transition-all border border-slate-200"

@@ -238,8 +238,8 @@ export function getPresetVerification(company: string, addr: string, lat?: numbe
         streetImageUrl: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80',
         streetImageCaption: 'Street View • 2710 Gateway Oaks Dr Corporate Office Center (Sacramento, CA)'
       },
-      googleMapsUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('Whole Foods Market, 1690 S Bascom Ave, Campbell, CA 95008')}`,
-      googleMapsDirectionsUrl: `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent('Whole Foods Market, 1690 S Bascom Ave, Campbell, CA 95008')}`,
+      googleMapsUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent((addr || '1690 S Bascom Ave, Campbell, CA 95008').trim())}`,
+      googleMapsDirectionsUrl: `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent((addr || '1690 S Bascom Ave, Campbell, CA 95008').trim())}`,
       googleStreetViewUrl: `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=37.2882,-121.9324`,
       verifiedAt: new Date().toISOString(),
       sourceConfidence: 'Verified Ground Truth & Corporate Registry'
@@ -393,8 +393,8 @@ export function getPresetVerification(company: string, addr: string, lat?: numbe
         streetImageUrl: 'https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=1200&q=80',
         streetImageCaption: 'Street View • Nintendo Worldwide Headquarters Building Facade (Kyoto)'
       },
-      googleMapsUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('Nintendo Co., Ltd., 11-1 Hokotate-cho, Kamitoba, Minami-ku, Kyoto 601-8501, Japan')}`,
-      googleMapsDirectionsUrl: `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent('Nintendo Headquarters, Kyoto, Japan')}`,
+      googleMapsUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent((addr || '11-1 Hokotate-cho, Kamitoba, Minami-ku, Kyoto 601-8501, Japan').trim())}`,
+      googleMapsDirectionsUrl: `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent((addr || '11-1 Hokotate-cho, Kamitoba, Minami-ku, Kyoto 601-8501, Japan').trim())}`,
       googleStreetViewUrl: `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=34.9702,135.7562`,
       verifiedAt: new Date().toISOString(),
       sourceConfidence: 'Verified Japanese Commercial Registry & Official IR Filings'
@@ -519,8 +519,8 @@ export function getPresetVerification(company: string, addr: string, lat?: numbe
         streetImageUrl: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1200&q=80',
         streetImageCaption: 'Street View • 22 Avenue Montaigne LVMH Corporate Facade (Paris)'
       },
-      googleMapsUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('LVMH, 22 Avenue Montaigne, 75008 Paris, France')}`,
-      googleMapsDirectionsUrl: `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent('LVMH, 22 Avenue Montaigne, 75008 Paris, France')}`,
+      googleMapsUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent((addr || '22 Avenue Montaigne, 75008 Paris, France').trim())}`,
+      googleMapsDirectionsUrl: `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent((addr || '22 Avenue Montaigne, 75008 Paris, France').trim())}`,
       googleStreetViewUrl: `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=48.8665,2.3082`,
       verifiedAt: new Date().toISOString(),
       sourceConfidence: 'Verified French Trade Register & Official Legal Filings'
@@ -632,8 +632,8 @@ export function getPresetVerification(company: string, addr: string, lat?: numbe
         'Real Tesla headquarters is situated at 1 Tesla Road in Austin, Texas.',
         'No corporate or retail records associate Tesla with this address.'
       ],
-      googleMapsUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('The White House, 1600 Pennsylvania Ave NW, Washington, DC 20500')}`,
-      googleMapsDirectionsUrl: `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent('The White House, 1600 Pennsylvania Ave NW, Washington, DC 20500')}`,
+      googleMapsUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent((addr || '1600 Pennsylvania Ave NW, Washington, DC 20500').trim())}`,
+      googleMapsDirectionsUrl: `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent((addr || '1600 Pennsylvania Ave NW, Washington, DC 20500').trim())}`,
       googleStreetViewUrl: `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=38.8977,-77.0365`,
       verifiedAt: new Date().toISOString(),
       sourceConfidence: 'Verified Landmark Registry & SEC Corporate Disclosure'
@@ -770,8 +770,8 @@ export function getPresetVerification(company: string, addr: string, lat?: numbe
         streetImageUrl: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80',
         streetImageCaption: 'Street View • 330 N Brand Blvd Corporate Center (Glendale, CA)'
       },
-      googleMapsUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('Apple Park, 1 Apple Park Way, Cupertino, CA 95014')}`,
-      googleMapsDirectionsUrl: `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent('Apple Park, 1 Apple Park Way, Cupertino, CA 95014')}`,
+      googleMapsUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent((addr || '1 Apple Park Way, Cupertino, CA 95014').trim())}`,
+      googleMapsDirectionsUrl: `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent((addr || '1 Apple Park Way, Cupertino, CA 95014').trim())}`,
       googleStreetViewUrl: `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=37.3346,-122.0090`,
       verifiedAt: new Date().toISOString(),
       sourceConfidence: 'Verified SEC Filings & California State Commercial Registry'
@@ -913,8 +913,8 @@ export function getPresetVerification(company: string, addr: string, lat?: numbe
         'Established under Delaware General Corporation Law (DGCL § 131 / § 132).',
         'Directly accessible via I-95 and downtown Wilmington transit.'
       ],
-      googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('Corporation Trust Center, 1209 North Orange St, Wilmington, DE 19801'),
-      googleMapsDirectionsUrl: 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent('Corporation Trust Center, 1209 North Orange St, Wilmington, DE 19801'),
+      googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent((addr || '1209 North Orange St, Wilmington, DE 19801, USA').trim()),
+      googleMapsDirectionsUrl: 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent((addr || '1209 North Orange St, Wilmington, DE 19801, USA').trim()),
       googleStreetViewUrl: 'https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=39.7473,-75.5484',
       verifiedAt: new Date().toISOString(),
       sourceConfidence: 'Delaware Division of Corporations & Commercial Ground Truth'
@@ -929,7 +929,8 @@ export function generateGenericVerification(company: string, addr: string, lat =
   const localLang = detectLocalLanguage(addr);
   const isLikelyHQ = /headquarters|corporate|plaza|tower|campus|suite|center|building|avenue|road|st|street/i.test(addr);
   
-  const encodedAddress = encodeURIComponent(`${company}, ${addr}`);
+  const cleanAddr = (addr || '123 Main St, New York, NY').trim();
+  const encodedAddress = encodeURIComponent(cleanAddr);
   const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
   const googleMapsDirectionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodedAddress}`;
   const googleStreetViewUrl = lat && lng
